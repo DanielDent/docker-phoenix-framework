@@ -1,17 +1,12 @@
 FROM danieldent/elixir-lang
 MAINTAINER Daniel Dent (https://www.danieldent.com)
 
-# Based on Dockerfile by shanesveller
-
-## PHOENIX DEPS
-
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update -q && \
-    apt-get -y install apt-transport-https && \
-    curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add - && \
-    echo 'deb https://deb.nodesource.com/node_0.12 trusty main' > /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update -q && \
-    apt-get -y install git inotify-tools nodejs=0.12.7-1nodesource1~trusty1 postgresql-client && \
-    apt-get clean -y && \
-    rm -rf /var/cache/apt/*
-
+ADD https://deb.nodesource.com/gpgkey/nodesource.gpg.key /tmp/nodesource.gpg.key
+RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install apt-transport-https \
+    && echo "773b328f7b1d6db58a8c6a7fc89e2ed58ac5e06c3ab148411cf8272be7b1c472 /tmp/nodesource.gpg.key" | sha256sum -c \
+    && apt-key add /tmp/nodesource.gpg.key \
+    && echo 'deb https://deb.nodesource.com/node_0.12 trusty main' > /etc/apt/sources.list.d/nodesource.list \
+    && DEBIAN_FRONTEND=noninteractive apt-get update -q \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install git inotify-tools nodejs=0.12.10-1nodesource1~trusty1 postgresql-client \
+    && rm -rf /var/lib/apt/* /var/cache/apt/* \
