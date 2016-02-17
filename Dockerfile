@@ -1,4 +1,4 @@
-FROM danieldent/elixir-lang
+FROM danieldent/elixir-lang:1.2.0
 MAINTAINER Daniel Dent (https://www.danieldent.com)
 
 ADD https://deb.nodesource.com/gpgkey/nodesource.gpg.key /tmp/nodesource.gpg.key
