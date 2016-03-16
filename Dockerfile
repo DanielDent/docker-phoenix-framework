@@ -8,5 +8,5 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -q \
     && apt-key add /tmp/nodesource.gpg.key \
     && echo 'deb https://deb.nodesource.com/node_4.x trusty main' > /etc/apt/sources.list.d/nodesource.list \
     && DEBIAN_FRONTEND=noninteractive apt-get update -q \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y install git inotify-tools nodejs=4.3.1-1nodesource1~trusty1 postgresql-client \
+    && DEBIAN_FRONTEND=noninteractive apt-get -y install git inotify-tools nodejs=4.4.0-1nodesource1~trusty1 postgresql-client \
     && rm -rf /var/lib/apt/* /var/cache/apt/* \
